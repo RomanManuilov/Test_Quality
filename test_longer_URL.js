@@ -2,6 +2,7 @@ describe('Проверка страницы на ошибку "414 Request-URL T
     beforeAll(function () {
         browser.ignoreSynchronization = true;
     });
+
     it('Ошибка "414 Request-URL Too Large"', function () {
         browser.get('http://quality.net.ua/');
         let inputName = element(by.xpath('//input[@name="varLogin"]'));
