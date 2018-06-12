@@ -15,22 +15,22 @@ describe('Проверка страницы на ошибку "414 Request-URL T
         inputPass.sendKeys('quality@user');
         btn.click();
         formStartDate.click();
-        browser.sleep('9000');
+        browser.sleep('6000');
         clickDate.click();
         clickImgGrafik.click().then(function () {
             DateUpdataTab();
         });
-        expect(updatePage()).toBe('http://quality.net.ua/start?activeTab=schedule&varSubject=&startsched=04.06.2018&endsched=16.06.2018&intSubserviceID=1&isStar=');
-    }, 2 * 60 * 60000);
+        expect(updatePage()).toBe('http://quality.net.ua/start?activeTab=schedule&varSubject=&startsched=04.06.2018&endsched=19.06.2018&intSubserviceID=1&isStar=');
+    }, 13 * 60 * 60000);
 });
 
 let currentNumber = 0;
 function updatePage() {
-    if(currentNumber === 3){
+    if(currentNumber === 39){
         return 'Попытки закончились ошибка не найдена.'
     }
     return browser.getCurrentUrl().then(function (result) {
-        if(result === 'http://quality.net.ua/start?activeTab=schedule&varSubject=&startsched=04.06.2018&endsched=16.06.2018&intSubserviceID=1&isStar='){
+        if(result === 'http://quality.net.ua/start?activeTab=schedule&varSubject=&startsched=04.06.2018&endsched=19.06.2018&intSubserviceID=1&isStar=' || result === 'http://quality.net.ua/start?activeTab=schedule&varSubject=&startsched=04.06.2018&endsched=20.06.2018&intSubserviceID=1&isStar='){
             browser.sleep(20 * 60000);
             browser.refresh().then(function () {
                 DateUpdataTab();
