@@ -1,4 +1,4 @@
-let quality_main_page = 'http://quality.net.ua/'
+let quality_main_page = 'http://quality.net.ua/';
 
 describe('Проверка меню раздела "О нас". Под меню:', function() {
 		beforeAll(function() {

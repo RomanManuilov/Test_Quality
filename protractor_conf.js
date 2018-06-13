@@ -3,9 +3,11 @@ let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  //specs: ['test_menu.js'],
-  //specs: ['test_longer_URL_orbita.js'],
-  specs: ['test_longer_URL.js'],
+  //specs: ['test_MainMenu_quality.js'],
+  //specs: ['test_longer_URL.js'],
+  //specs: ['test_menu','',''],
+    specs: ['test_MenuFooter_quality.js','test_MainMenu_quality.js','test_MainPage_quality.js'],
+
   onPrepare: function() {
       // Add a screenshot reporter and store screenshots to `/tmp/screenshots`:
       jasmine.getEnv().addReporter(new HtmlReporter({
