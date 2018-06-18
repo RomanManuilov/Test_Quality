@@ -6,8 +6,9 @@ exports.config = {
   //specs: ['test_MainMenu_quality.js'],
   //specs: ['test_longer_URL.js'],
   //specs: ['test_menu'],
-  // specs: ['test_MenuFooter_quality.js','test_MainMenu_quality.js','test_MainPage_quality.js'],
-  specs: ['test_Form_AskQuastion_quality.js'],
+  //specs: ['test_MenuFooter_quality.js','test_MainMenu_quality.js','test_MainPage_quality.js'],
+  //specs: ['test_Form_AskQuastion_quality.js'],
+    specs: ['test_Form_CallMeBack_quality.js'],
 
   onPrepare: function() {
       // Add a screenshot reporter and store screenshots to `/tmp/screenshots`:
