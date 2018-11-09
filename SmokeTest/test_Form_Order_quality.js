@@ -5,33 +5,106 @@ describe('Форма заказа рассылки сайта Quality.net.ua / �
     beforeAll(function () {
         browser.waitForAngularEnabled(false)
     });
-    it('Проверка на отправление формы заказа рассылки Quality.', function() {
-        browser.get('http://quality.net.ua/');
+    it('Проверка поля input Контактное лицо', function() {
+        browser.get('http://quality.net.ua/order');
+        var varContactPerson = element(by.xpath('//input[@name="varContactPerson"]')).isPresent().then((result)=>{
+            if(result){
+              element(by.xpath('//input[@name="varContactPerson"]')).sendKeys('Quality - тест');
+            } else {
+                fail("Такого поля для ввода Контактное лицо не существуе.");
 
-        var varContactPerson = element(by.xpath('//input[@name="varContactPerson"]'));
-
-        let test = new Promise((resolve, reject) =>{
-            return resolve(varContactPerson.isPresent() ? true : false);
-        }).then((result)=>{
-            result ? varContactPerson.sendKeys('Мануилов Роман - тест') : console.log("Поля не существует  >>>>", result);
-        }).catch((err)=>{
-            console.log('нет такого елемнта на стрице', err)
+            }
+        }).catch((err)=> {
+            console.log(err);
         });
-
-        let varCompany = element(by.xpath('//input[@name="varCompany"]')).sendKeys('Quality- тест');
-        let varPhone = element(by.xpath('//input[@name="varPhone"]')).sendKeys('099 999-99-99 - тест');
-        let varUrAddress = element(by.xpath('//input[@name="varUrAddress"]')).sendKeys('Не знаю - тест');
-        let varMail = element(by.xpath('//input[@name="varMail"]')).sendKeys('mr@quality-mail.com - тест');
-        let varICQ = element(by.xpath('//input[@name="varICQ"]')).sendKeys('quality.003 - тест');
-        let varInfo = element(by.xpath('//textarea[@name="varInfo"]')).sendKeys('Это текст для проверки формы - тест');
-        //let btn = element(by.css('#orderButton')).click();
+    });
+    it('Проверка поля input Название компании', function() {
+        var varCompany = element(by.xpath('//input[@name="varCompany"]')).isPresent().then((result)=>{
+            if(result){
+                element(by.xpath('//input[@name="varCompany"]')).sendKeys('Quality - тест');
+            } else {
+                fail("Такого поля для ввода Название компании не существуе.");
+            }
+        }).catch((err)=> {
+            console.log(err);
+        });
+    });
+    it('Проверка поля input Контактный телефон', function() {
+        var varPhone = element(by.xpath('//input[@name="varPhone"]')).isPresent().then((result)=>{
+            if(result){
+                element(by.xpath('//input[@name="varPhone"]')).sendKeys('Quality - тест');
+            } else {
+                fail("Такого поля для ввода Контактный телефон не существуе.");
+            }
+        }).catch((err)=> {
+            console.log(err);
+        });
+    });
+    it('Проверка поля input Юридический почтовый адрес', function() {
+        var varUrAddress = element(by.xpath('//input[@name="varUrAddress"]')).isPresent().then((result)=>{
+            if(result) {
+                element(by.xpath('//input[@name="varUrAddress"]')).sendKeys('Quality - тест');
+            } else {
+                fail("Такого поля для ввода Юридический почтовый адрес не существуе.");
+            }
+        }).catch((err)=> {
+            console.log(err);
+        });
+    });
+    it('Проверка поля input Адрес электронной почты', function() {
+        var varMail = element(by.xpath('//input[@name="varMail"]')).isPresent().then((result)=>{
+            if(result){
+                element(by.xpath('//input[@name="varMail"]')).sendKeys('Quality - тест');
+            } else {
+                fail("Такого поля для ввода Адрес электронной почты не существуе.");
+            }
+        }).catch((err)=> {
+            console.log(err);
+        });
+    });
+    it('Проверка поля input Skype', function() {
+        var varICQ = element(by.xpath('//input[@name="varICQ"]')).isPresent().then((result)=>{
+            if(result){
+                element(by.xpath('//input[@name="varICQ"]')).sendKeys('Quality - тест');
+            } else {
+                fail("Такого поля для ввода Skype не существуе.");
+            }
+        }).catch((err)=> {
+            console.log(err);
+        });
+    });
+    it('Проверка поля input Дополнительная информация компании', function() {
+        var varInfo = element(by.xpath('//textarea[@name="varInfo"]')).isPresent().then((result)=>{
+            if(result){
+                element(by.xpath('//textarea[@name="varInfo"]')).sendKeys('Quality - тест');
+            } else {
+                fail("Такого поля для ввода Дополнительная информация не существуе.");
+            }
+        }).catch((err)=> {
+            console.log(err);
+        });
+    });
+    it('Проверка поля input Кнопка', function() {
+        let btn = element(by.css('#orderButton')).isPresent().then((result)=>{
+            if(result){
+                /*element(by.css('#orderButton')).click();*/
+            } else{
+                fail("Кнопка Отправить заявку не существуе.");
+            }
+        }).catch((err)=> {
+            console.log(err);
+        });
         browser.sleep(1000);
     });
     it('Проверка сообщения "Ваша заявка принята, наш менеджер свяжется с вами в ближайшее время."', function () {
         let textMess = element(by.css('.messagebody .pmessagesbox')).isPresent().then(function (result) {
-            result ? expect(result.isDisplayed()).toBe(true) : console.log(consoleColorRed, 'Сообщение об успешном выполенеие не вывелось.');
+            if (result) {
+                expect(result.isDisplayed()).toBe(true)
+            } else{
+                fail("Сообщение об успешном выполенеие не вывелось.");
+            }
         }).catch(function (err) {
-            console.log(consoleColorRed,'Ошибка в коде, возможно обращение к селектору строка 21 >>>>>', err);
+            console.log(err);
         });
     })
 });
