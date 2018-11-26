@@ -9,8 +9,7 @@ exports.config = {
   //specs: ['test_Form_CallMeBack_quality.js'],
   //specs: ['test_Form_PageDocsQuality.js'],
   // specs: ['./SmokeTest/test_Form_Order_quality.js'], // smoke testing
-  // specs: ['./SmokeTest/test_Form_LoginPass.js'], // smoke testing
-   specs: ['./test_checkID.js'],
+    specs: ['./SmokeTest/test_Form_LoginPass.js'], // smoke testing
 
   onPrepare: function() {
       // Add a screenshot reporter and store screenshots to `/tmp/screenshots`:
