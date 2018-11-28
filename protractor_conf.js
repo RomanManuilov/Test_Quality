@@ -12,8 +12,12 @@ exports.config = {
     //specs: ['./SmokeTest/test_Form_LoginPass.js'], // smoke testing
     specs: ['./test_checkID.js'],
 
+    jasmineNodeOpts: {
+        showColors: true,
+        defaultTimeoutInterval: 120000,
+        isVerbose: true
+    },
 
-    global: qualityMainPage = 'http://quality.net.ua/',
 
     onPrepare: function () {
         // Add a screenshot reporter and store screenshots to `/tmp/screenshots`:
@@ -26,5 +30,6 @@ exports.config = {
                 displayStacktrace: true
             }
         }));
+        global.qualityMainPage = 'http://quality.net.ua/';
     }
 };

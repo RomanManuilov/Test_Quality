@@ -1,5 +1,5 @@
 let qualityNetUa = 'http://quality.net.ua/';
-let qualutyMailRU = 'http://qualitymail.ru/'
+let qualityMailRU = 'http://qualitymail.ru/';
 describe('Форма отправки на главной странице "Перезвони мне"', function() {
     beforeAll(function() {
         browser.ignoreSynchronization = true;

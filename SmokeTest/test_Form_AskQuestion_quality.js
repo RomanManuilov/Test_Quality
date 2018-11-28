@@ -1,7 +1,7 @@
 let quality_main_page = 'http://quality.net.ua/';
 describe('Форма отправки на главной странице "Задать вопрос"', function() {
-    beforeAll(function() {
-        browser.ignoreSynchronization = true;
+    beforeAll(function () {
+        browser.waitForAngularEnabled(false)
     });
     it('Проверка отправки заявки "Задать вопрос" id="facebox"', function() {
         browser.get(quality_main_page);

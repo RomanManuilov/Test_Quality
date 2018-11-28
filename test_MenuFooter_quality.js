@@ -23,7 +23,9 @@ describe('Проверка меню в Footer раздела "О нас". Под
     });
     it('Почему мы <a href="/whyus">', function() {
         browser.get(quality_main_page);
-        var subMenuItem = element(by.xpath('//div[@class="likList"]/p/a[text()="Почему мы"]'));
+         let menu = $('div.likList');
+         let subMenuItem =  menu.element(by.xpath('.//a[text()="Почему мы"]'));
+        var subMenuItem = element(by.xpath('//div[@class="likList"]//a[text()="Почему мы"]'));
         subMenuItem.click();
         expect(browser.getCurrentUrl()).toBe('http://quality.net.ua/whyus');
     });
