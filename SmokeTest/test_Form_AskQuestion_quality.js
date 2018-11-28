@@ -5,12 +5,12 @@ describe('Форма отправки на главной странице "За
     });
     it('Проверка отправки заявки "Задать вопрос" id="facebox"', function() {
         browser.get(quality_main_page);
-        let btnAskQustion = element(by.xpath('//a[text()="Задать вопрос"]'));
+        let btnAskQuestion = element(by.xpath('//a[text()="Задать вопрос"]'));
         let formName = element(by.xpath('//div[@id="facebox"]//input[@name="varName"]'));
         let formEmail = element(by.xpath('//div[@id="facebox"]//input[@name="varEmail"]'));
         let formAskQuastion = element(by.xpath('//div[@id="facebox"]//textarea[@name="varText"]'));
         let btnSend = element(by.xpath('//div[@id="facebox"]//table[@class="sendQuestionTable"]//a[@class="button"]'));
-        btnAskQustion.click();
+        btnAskQuestion.click();
         browser.sleep('3000');
         formName.sendKeys('Проверка формы тест Quality');
         formEmail.sendKeys('index@mail.ru');

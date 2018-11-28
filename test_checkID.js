@@ -1,50 +1,49 @@
-var LoginPageManager = require('./PageObjects/loginPageManager.js');
-var loginPageManager = new LoginPageManager();
+const ManagerPage = require('./PageObjects/managerPage.js');
+const managerPage = new ManagerPage();
 
-describe('Проверка ID в базе PhpMyAdmin', function() {
+describe('Проверка ID в базе PhpMyAdmin', function () {
     beforeAll(function () {
         browser.waitForAngularEnabled(false)
     });
-    it('Вход в аккаунт', function() {
+    it('Данные по компании получены: ID,Имя компании,Домен сайта,Контакты', function () {
+        (async () => {
+            await browser.get('https://manager.quality-mail.com/logon');
+            managerPage.enterLogin("", "");
+            await browser.sleep(5000);
+            await expect(managerPage.picLogoLocator.isPresent()).toBeTruthy('Лого не найдено');
+        })();
 
-        browser.get('https://manager.quality-mail.com/logon');
-        loginPageManager.enterLogin("", "");
-        expect(loginPageManager.picLogoLocator.isPresent()).toBeTruthy();
+        let arrID = ['14440', '14435', '6592'];
+        let arrCustomers = [];
 
-        let arrID = ['14440','14435','6592'];
-        let companyName;
-        let webDomen;
+        for (let i = 0; i < arrID.length; i++) {
+            (async () => {
+                await browser.get(`https://manager.quality-mail.com/clientsedit/?intClientID=${arrID[i]}#about`);
+            })();
+            const customer = {
+                id: arrID[i],
+                companyName: managerPage.getCompanyName(),
+                webDomain: managerPage.getWebDomain(),
+                contactsCompany: managerPage.getContactsCompany()
+            };
+            arrCustomers.push(customer);
+        }
+        const arrCustomersJson = JSON.stringify(arrCustomers);
+        console.log(arrCustomersJson)
+        /*browser.get('http://maria.quality.net.ua/pma/');
+        managerPage.enterPhpMyAdminLogin("", "");*/
+    });
+});
 
-        for (let i = 0; i < arrID.length; i++){
-            browser.get(`https://manager.quality-mail.com/clientsedit/?intClientID=${arrID[i]}#about`);
-            companyName += loginPageManager.getCompanyName()/*.then((result)=>{
+/*
+managerPage.getCompanyName()/!*.then((result)=>{
                 console.log("\x1b[32m", 'Имя компании: ', result);
-            });*/
-            webDomen += loginPageManager.getWebDomen()/*.then((result)=>{
+            });*!/
+managerPage.getWebDomen()/!*.then((result)=>{
                 console.log("\x1b[34m", 'Сайт/домен: ' + result);
-            });*/
-            loginPageManager.getContactsCompany()/*.then((arr)=>{
+            });*!/
+managerPage.getContactsCompany()/!*.then((arr)=>{
                 for (let i = 1; i < arr.length; i++){
                     console.log("\x1b[37m", "Контакты: "  + arr[i]);
                 }
-            });*/
-        }
-
-        browser.get('http://maria.quality.net.ua/pma/');
-        loginPageManager.enterPhpMyAdminLogin("", "");
-
-        browser.executeScript('window.open()').then(() => {
-            browser.getAllWindowHandles().then((handles)=> {
-                var secondWindow = handles[1];
-                browser.ignoreSynchronization = true;
-                browser.switchTo().window(secondWindow).then(()=> {
-                    // do whatever you want to do in new window
-                });
-               /* var firstWindow = handles[0]
-                browser.switchTo().window(firstWindow).then(()=> {
-                    console.log("Returning back");
-                });*/
-            });
-        });
-    });
-});
+            });*!/*/
