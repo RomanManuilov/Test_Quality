@@ -6,7 +6,7 @@ module.exports = class ManagerPage {
         this.picLogoLocator = element(by.css('#logoBar'));
         this.inputCompanyName = element(by.css('#varCompanyName'));
         this.inputWebAdress = element(by.css('#varWWW'));
-        this.contactLocator = element.all(by.xpath('//div[@id="contacts_table"]'));
+        this.contactLocator = element.all(by.xpath('//div[@id="contacts_table"]//tr//td[4]'));
     }
 
     async setUserName(userName) {
@@ -45,6 +45,7 @@ module.exports = class ManagerPage {
             let str = await this.inputWebAdress.getAttribute('value');
             str = str.replace(/.com[\S]*/g, '');
             str = str.replace(/http:\/\//g, '');
+            str = str.replace(/https:\/\//g, '');
             str = str.replace(/www./g, '');
             return str
         } catch (err) {
@@ -55,13 +56,7 @@ module.exports = class ManagerPage {
     async getContactsCompany() {
         try {
             let str = await this.contactLocator.getText()
-            str = str.join()
-            str = str.replace(/[а-яФА-Я,.]*/g, '');
-            str = str.replace(/e-mail/g, '');
-            str = str.replace(/ICQ/g, '');
-            str = str.replace(/[\s]{2,}/g, ' ');
-            let arr = str.split(' ');
-            return arr
+            return str
         } catch (err) {
             fail(err)
         }
