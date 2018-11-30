@@ -1,5 +1,5 @@
-var LoginPageCustomer = require('../PageObjects/mainPage.js');
-var loginPageCustomer = new LoginPageCustomer();
+var LoginCustomerPage = require('../PageObjects/loginCustomerPage.js');
+var loginCustomerPage = new LoginCustomerPage();
 
 describe('Форма личного кабинета сайта Quality.net.ua', function () {
     beforeAll(function () {
@@ -8,9 +8,9 @@ describe('Форма личного кабинета сайта Quality.net.ua',
     it('Проверка полей формы не странице "Имя пользователя","Пароль" кнопка "Войти"', function () {
         browser.get(global.qualityMainPage);
         try {
-            expect(loginPageCustomer.loginCustomerLocator.isPresent()).toBeTruthy('Нет поля "Имя пользователя"');
-            expect(loginPageCustomer.passwordCustomerLocator.isPresent()).toBeTruthy('Нет поля "Пароль"');
-            expect(loginPageCustomer.loginButtonLocator.isPresent()).toBeTruthy('Нет кнопки "Войти"');
+            expect(loginCustomerPage.loginCustomerLocator.isPresent()).toBeTruthy('Нет поля "Имя пользователя"');
+            expect(loginCustomerPage.passwordCustomerLocator.isPresent()).toBeTruthy('Нет поля "Пароль"');
+            expect(loginCustomerPage.loginButtonLocator.isPresent()).toBeTruthy('Нет кнопки "Войти"');
         }
         catch (err) {
             fail(err)
@@ -19,9 +19,9 @@ describe('Форма личного кабинета сайта Quality.net.ua',
     });
     it('Вход в линый кабинет успешен.', function () {
         try {
-            loginPageCustomer.enterAccountCustomer('', '')//Установить входные парамтеры login,pass от акк QUALITY, проверка производится на рабочем акк. quality.
+            loginCustomerPage.enterAccountCustomer('', '')//Установить входные парамтеры login,pass от акк QUALITY, проверка производится на рабочем акк. quality.
             expect(browser.getCurrentUrl()).toBe('http://quality.net.ua/start?activeTab=schedule&intSubserviceID=1');
-            expect(loginPageCustomer.nameCustomerLocator.getText()).toBe('QUALITY', "Нет имени компании");
+            expect(loginCustomerPage.nameCustomerLocator.getText()).toBe('QUALITY', "Нет имени компании");
         }
         catch (err) {
             fail(err)

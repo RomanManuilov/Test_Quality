@@ -38,7 +38,7 @@ describe('Проверка ID в базе PhpMyAdmin', function () {
             fail(err)
         }
     });
-    it('Проверка на существующие данные в базе phpMyAdmin', async function () {
+    /*it('Проверка на существующие данные в базе phpMyAdmin', async function () {
         try {
             await browser.get('http://maria.quality.net.ua/pma/');
             phpMyAdmin.enterPhpMyAdminLogin("", "");
@@ -57,5 +57,5 @@ describe('Проверка ID в базе PhpMyAdmin', function () {
         } catch (err) {
             fail(err)
         }
-    });
+    });*/
 });

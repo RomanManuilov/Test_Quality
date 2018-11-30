@@ -1,5 +1,3 @@
-
-
 module.exports = class PhpMyAdminPage {
     constructor(){
         this.phpUsermameLocator = element(by.css('#input_username'));
@@ -10,13 +8,6 @@ module.exports = class PhpMyAdminPage {
         this.phpVarTagBodyLocator = element(by.css('#fieldID_3'));
         this.phpSearchButtonLocator = element(by.xpath('//input[@value="OK"]'));
         this.phpMessageSuccessLocator = element(by.xpath('//*[@class="success"]'));
-
-        this.searchSuccessMessage = async()=>{
-            await browser.sleep(2000);
-            let successMessage = await this.phpMessageSuccessLocator.getText();
-            await browser.get('http://maria.quality.net.ua/pma/index.php?token=623e293a84244ca702828e77854fb2b9#PMAURL-10:tbl_select.php?db=analytics&table=clients&server=1&target=&token=623e293a84244ca702828e77854fb2b9');
-            return successMessage.includes('пустой результат') ? false : true;
-        }
     };
     async setPhpMyAdminUserName(userName){
         return await this.phpUsermameLocator.sendKeys(userName);
@@ -39,5 +30,10 @@ module.exports = class PhpMyAdminPage {
         await this.phpSearchButtonLocator.click();
         return this.searchSuccessMessage()
     }
-
+    async searchSuccessMessage(){
+        await browser.sleep(2000);
+        let successMessage = await this.phpMessageSuccessLocator.getText();
+        await browser.get('http://maria.quality.net.ua/pma/index.php?token=623e293a84244ca702828e77854fb2b9#PMAURL-10:tbl_select.php?db=analytics&table=clients&server=1&target=&token=623e293a84244ca702828e77854fb2b9');
+        return successMessage.includes('пустой результат') ? false : true;
+    }
 };

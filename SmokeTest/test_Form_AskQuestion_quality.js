@@ -1,20 +1,26 @@
-let quality_main_page = 'http://quality.net.ua/';
-describe('Форма отправки на главной странице "Задать вопрос"', function() {
+const AskQuestionPage = require("../PageObjects/askQuestionPage.js");
+const askQuestionPage = new AskQuestionPage();
+const EC = protractor.ExpectedConditions;
+
+describe('Форма отправки на главной странице "Задать вопрос"', function () {
     beforeAll(function () {
         browser.waitForAngularEnabled(false)
     });
-    it('Проверка отправки заявки "Задать вопрос" id="facebox"', function() {
-        browser.get(quality_main_page);
-        let btnAskQuestion = element(by.xpath('//a[text()="Задать вопрос"]'));
-        let formName = element(by.xpath('//div[@id="facebox"]//input[@name="varName"]'));
-        let formEmail = element(by.xpath('//div[@id="facebox"]//input[@name="varEmail"]'));
-        let formAskQuastion = element(by.xpath('//div[@id="facebox"]//textarea[@name="varText"]'));
-        let btnSend = element(by.xpath('//div[@id="facebox"]//table[@class="sendQuestionTable"]//a[@class="button"]'));
-        btnAskQuestion.click();
-        browser.sleep('3000');
-        formName.sendKeys('Проверка формы тест Quality');
-        formEmail.sendKeys('index@mail.ru');
-        formAskQuastion.sendKeys('Hello world');
-        btnSend.click();
+    it('Отправка заявки "Задать вопрос" успешно, проверьте email', async function () {
+        try {
+            await browser.get(global.qualityMainPage);
+            expect(await askQuestionPage.linkAskQuestionLocator.isPresent()).toBeTruthy('Ссылки "Задать вопрос" нет на этой странице' + global.qualityMainPage);
+            await askQuestionPage.linkAskQuestionLocator.click();
+            await browser.wait(EC.presenceOf(askQuestionPage.windowAskQuestionLocator), 5000, 'Окно "Задать нам вопрос" не появилось.');
+
+            expect(await askQuestionPage.nameOrCompanyLocator.isPresent()).toBeTruthy('Нет поля "Ваше имя и/или компания"');
+            expect(await askQuestionPage.emailOrphoneLocator.isPresent()).toBeTruthy('Нет поля "Электронная почта и/или телефон"');
+            expect(await askQuestionPage.textQuestionLocator.isPresent()).toBeTruthy('Нет поля "Текст Вашего вопроса"');
+            expect(await askQuestionPage.buttonSendLocator.isPresent()).toBeTruthy('Нет кнопки "Отправить"');
+
+            await askQuestionPage.sendOuestionOnEmail('Quality - test', 'quality@gmail.com', 'Если вы получили это письмо на него не нужно реагировать, спокойно работайте дальше.')
+        } catch (err) {
+            fail(err)
+        }
     });
 });
