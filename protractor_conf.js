@@ -3,14 +3,19 @@ let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 
 exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
+    /*suites: {
+        smoke: './smoke/!*.js', // $ protractor protractor.conf.js --suite smoke
+
+    },*/
     //specs: ['test_MainMenu_quality.js'],
     //specs: ['test_menu'],
-    //specs: ['./SmokeTest/test_Form_AskQuestion_quality.js'],
-    specs: ['./SmokeTest/test_Form_CallMeBack_quality.js'],
-    //specs: ['test_Form_PageDocsQuality.js'],
-    // specs: ['./SmokeTest/test_Form_Order_quality.js'], // smoke testing
-    //specs: ['./SmokeTest/test_Form_LoginPass.js'], // smoke testing
+    //specs: ['./smoke/test_Form_AskQuestion_quality.js'],
+    //specs: ['./smoke/test_Form_CallMeBack_quality.js'],
+    //specs: ['./smoke/test_Form_Order_quality.js'], // smoke testing
+    //specs: ['./smoke/test_Form_LoginPass.js'], // smoke testing
+    //specs: ['./smoke/test_MainPage_button_quality.js'],
     //specs: ['./test_checkID.js'],
+    specs: ['./test_MainMenu_quality.js'],
 
     jasmineNodeOpts: {
         showColors: true,
