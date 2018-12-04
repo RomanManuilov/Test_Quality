@@ -7,15 +7,11 @@ exports.config = {
         smoke: './smoke/!*.js', // $ protractor protractor.conf.js --suite smoke
 
     },*/
-    //specs: ['test_menu_aboutUs.js'],
-    //specs: ['test_menu'],
-    //specs: ['./smoke/test_form_askQuestion.js'],
-    //specs: ['./smoke/test_form_сallMeBack.js'],
-    //specs: ['./smoke/test_form_order.js'], // smoke testing
-    //specs: ['./smoke/test_form_loginPass.js'], // smoke testing
-    //specs: ['./smoke/test_button_orderAndSubscribe.js'],
-    //specs: ['./test_checkID.js'],
-    specs: ['./smoke/test_menu_bonus.js'],
+    specs: ['./test_checkID.js',
+            //'./smoke/test_button_orderAndSubscribe.js',
+            //'./smoke/test_form_askQuestion.js',
+            //'./smoke/test_form_loginPass.js',
+    ],
 
     jasmineNodeOpts: {
         showColors: true,
